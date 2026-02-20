@@ -7,7 +7,8 @@ from app.models import Decision, AuditLog
 from app.scoring.engine import ScoringEngine
 from app.clients.mongo import mongo_client
 from app.clients.ollama import ollama_client
-from app.dependencies import verify_api_key
+# API key verification removed from score endpoint for public access
+# from app.dependencies import verify_api_key
 from app.utils.logging import get_logger, get_trace_id, set_trace_id
 from app.config import settings
 import uuid
@@ -18,8 +19,7 @@ logger = get_logger(__name__)
 @router.post("/api/claim/score", response_model=ClaimScoreResponse)
 async def score_claim(
     claim: ClaimScoreRequest,
-    db: Session = Depends(get_db),
-    api_key: str = Depends(verify_api_key)
+    db: Session = Depends(get_db)
 ):
     """Score a claim and return decision."""
     # Set trace ID for this request
