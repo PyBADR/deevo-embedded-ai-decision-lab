@@ -7,7 +7,7 @@ from app.database import Base
 
 
 class GUID(TypeDecorator):
-    """Platform-independent GUID type that uses PostgreSQL's UUID or String(36)."""
+    """Platform-independent GUID type - always uses String(36) for compatibility."""
     impl = String(36)
     cache_ok = True
 
@@ -20,15 +20,10 @@ class GUID(TypeDecorator):
 
     def process_result_value(self, value, dialect):
         if value is not None:
-            return uuid.UUID(value)
+            if isinstance(value, uuid.UUID):
+                return value
+            return uuid.UUID(str(value))
         return value
-
-    def load_dialect_impl(self, dialect):
-        if dialect.name == 'postgresql':
-            from sqlalchemy.dialects.postgresql import UUID as PG_UUID
-            return dialect.type_descriptor(PG_UUID(as_uuid=True))
-        else:
-            return dialect.type_descriptor(String(36))
 
 
 class Decision(Base):
