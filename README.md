@@ -93,56 +93,39 @@ Once running, visit: http://localhost:8000/docs
 
 ## 🚢 Railway Deployment
 
-### Step 1: Create Railway Project
+For detailed Railway deployment instructions, see [RAILWAY_DEPLOYMENT.md](./RAILWAY_DEPLOYMENT.md).
+
+**Quick Deploy:**
+
+1. Create Railway project from GitHub repo
+2. Add PostgreSQL + MongoDB databases
+3. Configure environment variables
+4. Deploy automatically on git push
+
+**Live Demo URLs:**
+- **Backend API:** https://deevo-embedded-ai-decision-lab-production.up.railway.app
+- **API Docs:** https://deevo-embedded-ai-decision-lab-production.up.railway.app/docs
+- **Frontend:** https://feisty-determination-production-d789.up.railway.app
+
+**Environment Variables:**
+
+Backend:
 ```bash
-# Install Railway CLI
-npm install -g @railway/cli
-
-# Login
-railway login
-
-# Create project
-railway init
-```
-
-### Step 2: Add Databases
-
-1. **PostgreSQL:** Railway Dashboard → Add Database → PostgreSQL
-2. **MongoDB:** Add MongoDB plugin OR use MongoDB Atlas
-
-### Step 3: Configure Services
-
-**Backend Service:**
-- Root Directory: `/backend`
-- Build Command: `pip install -r requirements.txt`
-- Start Command: `alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-
-Environment Variables:
-```
-DATABASE_URL=${POSTGRES_URL}
-MONGODB_URI=<your-mongodb-uri>
+DATABASE_URL=${{Postgres.DATABASE_URL}}
+MONGODB_URI=${{MongoDB.MONGODB_URI}}
 SEED_TOKEN=<generate-random-token>
 LOG_LEVEL=INFO
 MODEL_VERSION=rb-v1
 POLICY_VERSION=policy-v1
+PORT=8000
 ```
 
-**Frontend Service:**
-- Root Directory: `/frontend`
-- Build Command: `pip install -r requirements.txt`
-- Start Command: `streamlit run app.py --server.port=$PORT --server.address=0.0.0.0`
-
-Environment Variables:
-```
-BACKEND_URL=${{backend.url}}
-```
-
-### Step 4: Deploy
+Frontend:
 ```bash
-railway up
+FRONTEND_BACKEND_URL=${{backend.url}}
 ```
 
-### Step 5: Seed Production Data
+**Seed Production Data:**
 ```bash
 curl -X POST "https://your-backend.railway.app/api/seed?count=100&seed_token=YOUR_TOKEN"
 ```

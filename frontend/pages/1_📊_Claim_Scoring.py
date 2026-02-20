@@ -8,7 +8,7 @@ st.set_page_config(page_title="Claim Scoring", page_icon="📊", layout="wide")
 
 st.title("📊 Claim Scoring")
 
-backend_url = os.getenv("BACKEND_URL", "http://localhost:8000")
+backend_url = os.getenv("FRONTEND_BACKEND_URL", os.getenv("BACKEND_URL", "http://localhost:8000"))
 
 # Input method selection
 input_method = st.radio("Input Method", ["Form", "JSON", "Upload File"])

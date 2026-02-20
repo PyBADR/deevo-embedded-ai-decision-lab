@@ -36,7 +36,7 @@ Use the sidebar to navigate between different features.
 ### 🔗 System Status
 """)
 
-backend_url = os.getenv("BACKEND_URL", "http://localhost:8000")
+backend_url = os.getenv("FRONTEND_BACKEND_URL", os.getenv("BACKEND_URL", "http://localhost:8000"))
 
 try:
     response = requests.get(f"{backend_url}/health", timeout=5)

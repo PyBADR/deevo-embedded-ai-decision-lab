@@ -12,6 +12,10 @@ class Settings(BaseSettings):
     MODEL_VERSION: str = "rb-v1"
     POLICY_VERSION: str = "policy-v1"
     
+    # Feature flags
+    ENABLE_HF_EMBEDDINGS: bool = False
+    HF_MODEL_NAME: str = "sentence-transformers/all-MiniLM-L6-v2"
+    
     class Config:
         env_file = ".env"
         case_sensitive = False

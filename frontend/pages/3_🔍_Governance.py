@@ -8,7 +8,7 @@ st.set_page_config(page_title="Governance", page_icon="🔍", layout="wide")
 
 st.title("🔍 Governance & Audit Trail")
 
-backend_url = os.getenv("BACKEND_URL", "http://localhost:8000")
+backend_url = os.getenv("FRONTEND_BACKEND_URL", os.getenv("BACKEND_URL", "http://localhost:8000"))
 
 # Fetch decisions
 st.subheader("📋 Recent Decisions")

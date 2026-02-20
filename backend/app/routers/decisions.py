@@ -4,6 +4,7 @@ from app.database import get_db
 from app.models import Decision, AuditLog
 from app.schemas import DecisionDetail, ClaimScoreResponse
 from app.scoring.engine import ScoringEngine
+from app.dependencies import verify_api_key
 from typing import List
 
 router = APIRouter()
@@ -90,7 +91,8 @@ async def list_models():
 async def seed_demo_data(
     count: int = Query(default=10, le=100),
     seed_token: str = Query(...),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    api_key: str = Depends(verify_api_key)
 ):
     """Seed demo data (protected endpoint)."""
     from app.config import settings
