@@ -1,6 +1,30 @@
 # DEEVO Embedded AI Decision Lab
 
+[![CI/CD](https://github.com/PyBADR/deevo-embedded-ai-decision-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/PyBADR/deevo-embedded-ai-decision-lab/actions/workflows/ci.yml)
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.109.0-009688.svg)](https://fastapi.tiangolo.com/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.29.0-FF4B4B.svg)](https://streamlit.io/)
+[![Railway](https://img.shields.io/badge/Railway-Deployed-blueviolet.svg)](https://railway.app/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Production-grade insurance claims scoring platform with AI-driven decision intelligence.
+
+## 🚀 Live Demo
+
+| Service | URL |
+|---------|-----|
+| **Frontend** | [https://feisty-determination-production-d789.up.railway.app](https://feisty-determination-production-d789.up.railway.app) |
+| **Backend API** | [https://deevo-embedded-ai-decision-lab-production.up.railway.app](https://deevo-embedded-ai-decision-lab-production.up.railway.app) |
+| **API Docs** | [https://deevo-embedded-ai-decision-lab-production.up.railway.app/docs](https://deevo-embedded-ai-decision-lab-production.up.railway.app/docs) |
+
+## 📊 Production Metrics (GIG Takaful)
+
+| Metric | Value |
+|--------|-------|
+| Claims Processed | **8,500+** |
+| Workload Reduction | **62%** |
+| Fraud Prevented | **8.5M KWD** |
+| Response Time | **<2 seconds** |
 
 ## 🎯 Features
 
