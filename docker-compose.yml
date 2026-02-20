@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: deevo_lab_backend
+    ports:
+      - "8002:8000"
+    environment:
+      DATABASE_URL: postgresql://deevo_admin:DeevoSecure2024!@172.25.0.3:5432/deevo_intelligence_lab
+      MONGODB_URI: mongodb://deevo-mongo:27017/deevo_lab
+      LOG_LEVEL: INFO
+      MODEL_VERSION: rb-v1
+      POLICY_VERSION: policy-v1
+      SEED_TOKEN: dev-seed-token
+      OLLAMA_BASE_URL: 
+    networks:
+      - deevo-network
+
+  frontend:
+    build: ./frontend
+    container_name: deevo_lab_frontend
+    ports:
+      - "8501:8501"
+    environment:
+      BACKEND_URL: http://deevo_lab_backend:8000
+    depends_on:
+      - backend
+    networks:
+      - deevo-network
+
+networks:
+  deevo-network:
+    external: true
+    name: deevo_intelligence_lab_os_deevo-network
